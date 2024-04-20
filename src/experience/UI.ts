@@ -73,9 +73,11 @@ export default class UI {
     const action = UI.nextButtonActions[this.currentAction];
     if (action) {
       this.isAnimating = true;
+      this.nextButton.disable();
       action.action(this.experience, () => {
         this.currentAction++;
         this.isAnimating = false;
+        this.nextButton.enable();
       });
     }
   };

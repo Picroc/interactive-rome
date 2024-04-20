@@ -26,4 +26,12 @@ export default class NextButton {
       cb();
     });
   }
+
+  disable() {
+    this.element.disabled = true;
+  }
+
+  enable() {
+    this.element.disabled = false;
+  }
 }
