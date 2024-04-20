@@ -60,7 +60,7 @@ export default class Skull extends AnimatedSprite {
     this.sprite.position.copy(Skull.INITIAL_POSITION);
   }
 
-  playWakeUpAnimation() {
+  playWakeUpAnimation(cb?: () => void) {
     const initialPosition = new THREE.Vector2(-1.1957, 1.2134);
     const finalPosition = new THREE.Vector2(-1.1957, -0.3107);
 
@@ -75,7 +75,9 @@ export default class Skull extends AnimatedSprite {
     tween.to({ x: finalPosition.x, z: finalPosition.y }, 1500);
     tween.start();
     tween.onComplete(() => {
-      this.playAnimation(1000, [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0]);
+      this.playAnimation(1000, [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0]).onComplete(
+        cb
+      );
     });
   }
 
@@ -89,7 +91,7 @@ export default class Skull extends AnimatedSprite {
     return tween;
   }
 
-  private playMovingOutAnimation() {
+  private playMovingOutAnimation(cb?: () => void) {
     const tween = this.playMovingPrepareAnimation();
     tween.start();
     tween.onComplete(() => {
@@ -104,11 +106,24 @@ export default class Skull extends AnimatedSprite {
 
       tweenPos.start();
       tweenRot.start();
+
+      let toComplete = 2;
+
+      const onAllComplete = () => {
+        toComplete--;
+
+        if (toComplete === 0) {
+          cb?.();
+        }
+      };
+
+      tweenPos.onComplete(onAllComplete);
+      tweenRot.onComplete(onAllComplete);
     });
   }
 
-  playMovingAnimation() {
-    this.playMovingOutAnimation();
+  playMovingAnimation(cb?: () => void) {
+    this.playMovingOutAnimation(cb);
   }
 
   update() {}

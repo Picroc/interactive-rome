@@ -84,6 +84,8 @@ export default class Camera {
 
   update = () => {
     update();
-    this.controls.update();
+    if (this.debug.active) {
+      this.controls.update();
+    }
   };
 }

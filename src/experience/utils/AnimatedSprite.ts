@@ -75,7 +75,7 @@ export default class AnimatedSprite {
     const frameDuration = duration / framesNumber;
 
     let currentFrame = 0;
-    let onComplete = () => {};
+    let onComplete: (() => void) | undefined;
 
     const onTimeout = () => {
       if (currentFrame < framesNumber) {
@@ -85,14 +85,14 @@ export default class AnimatedSprite {
         currentFrame++;
         this.animationTimer = setTimeout(onTimeout, frameDuration);
       } else {
-        onComplete();
+        onComplete?.();
       }
     };
 
     onTimeout();
 
     return {
-      onComplete: (cb: () => void) => {
+      onComplete: (cb?: () => void) => {
         onComplete = cb;
       }
     };

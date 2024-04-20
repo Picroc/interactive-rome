@@ -9,6 +9,7 @@ import resources from '../resources/Resources';
 import { Clouds } from '../components/clouds/Clouds';
 import IntroScene from '../scenes/intro';
 import MapScene from '../scenes/map';
+import UI from './UI';
 
 export interface InteractiveScene {
   update: () => void;
@@ -28,6 +29,8 @@ export default class Experience {
   resources: Resources;
   camera: Camera;
   renderer: Renderer;
+
+  ui: UI;
 
   currentScene?: InteractiveScene;
   clouds?: Clouds;
@@ -82,6 +85,8 @@ export default class Experience {
 
       this.setWorld();
       this.setDebug();
+
+      this.ui = new UI();
     });
   }
 
