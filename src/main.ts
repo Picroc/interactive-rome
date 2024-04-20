@@ -1,7 +1,7 @@
-import Experience from "./experience";
+import Experience from './experience/Experience';
 
-const canvas = document.querySelector<HTMLCanvasElement>("canvas.webgl");
+const canvas = document.querySelector<HTMLCanvasElement>('canvas.webgl');
 
 if (canvas) {
-    new Experience(canvas);
+  new Experience(canvas);
 }

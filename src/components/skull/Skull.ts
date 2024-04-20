@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Experience from '../../experience';
+import Experience from '../../experience/Experience';
 import { Easing, Tween } from '@tweenjs/tween.js';
 import AnimatedSprite from '../../experience/utils/AnimatedSprite';
 

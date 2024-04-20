@@ -1,6 +1,6 @@
-import IntroBackground from '../components/introBackground';
-import Skull from '../components/skull';
-import Experience from '../experience';
+import IntroBackground from '../components/introBackground/IntroBackgound';
+import Skull from '../components/skull/Skull';
+import Experience from '../experience/Experience';
 
 export default class IntroScene {
   scene: Experience['scene'];

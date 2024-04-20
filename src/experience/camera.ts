@@ -1,4 +1,4 @@
-import Experience from '.';
+import Experience from './Experience';
 import { PerspectiveCamera, Scene } from 'three';
 import Sizes from './utils/Sizes';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';

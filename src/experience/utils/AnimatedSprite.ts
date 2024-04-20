@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Experience from '..';
+import Experience from '../Experience';
 import { ImageMetadata } from './Resources';
 
 export interface TileOptions {

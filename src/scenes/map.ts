@@ -1,5 +1,5 @@
-import Experience from '../experience';
-import Map from '../components/map';
+import Experience from '../experience/Experience';
+import Map from '../components/map/Map';
 
 export default class MapScene {
   mapComponent: Map;

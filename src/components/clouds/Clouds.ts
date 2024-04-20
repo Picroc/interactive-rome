@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Experience from '../../experience';
+import Experience from '../../experience/Experience';
 import { randFloat, randInt } from 'three/src/math/MathUtils.js';
 
 const CLOUDS_COUNT = 120;

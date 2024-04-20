@@ -1,9 +1,9 @@
-import * as THREE from "three";
-import * as TWEEN from "@tweenjs/tween.js";
-import GUI from "lil-gui";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Clouds } from "./components/clouds";
+import * as THREE from 'three';
+import * as TWEEN from '@tweenjs/tween.js';
+import GUI from 'lil-gui';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Clouds } from './components/clouds/Clouds';
 
 /**
  * Loaders
@@ -11,7 +11,7 @@ import { Clouds } from "./components/clouds";
 const gltfLoader = new GLTFLoader();
 const textureLoader = new THREE.TextureLoader();
 
-const iconTexture = textureLoader.load("/textures/icon.png");
+const iconTexture = textureLoader.load('/textures/icon.png');
 
 // gltfLoader.load("/RomeMapScene.glb", (data) => {
 //   const map = data.scene.children[0].material.map;
@@ -30,11 +30,11 @@ const gui = new GUI({ width: 500 });
 gui.close();
 const global = {
   cameraTop: 3.0,
-  iconScale: 0.1,
+  iconScale: 0.1
 };
 
 // Canvas
-const canvas = document.querySelector("canvas.webgl");
+const canvas = document.querySelector('canvas.webgl');
 
 // Scene
 const scene = new THREE.Scene();
@@ -49,10 +49,10 @@ const updateCamera = () => {
  */
 const sizes = {
   width: window.innerWidth,
-  height: window.innerHeight,
+  height: window.innerHeight
 };
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   const aspect = window.innerWidth / window.innerHeight;
 
   // if (aspect > 1.8) {
@@ -107,7 +107,7 @@ camera.rotation.set(global.cameraRotX, 0, 0);
 scene.add(camera);
 
 gui
-  .add(global, "cameraTop")
+  .add(global, 'cameraTop')
   .min(0.0)
   .max(3.0)
   .step(0.0001)
@@ -117,7 +117,7 @@ gui
 
 const mapPlane = new THREE.Mesh(
   new THREE.PlaneGeometry(1, 1),
-  new THREE.MeshBasicMaterial({ color: "white" })
+  new THREE.MeshBasicMaterial({ color: 'white' })
 );
 
 mapPlane.rotation.x = -Math.PI / 2;
@@ -126,7 +126,7 @@ mapPlane.position.y = -1;
 
 scene.add(mapPlane);
 
-textureLoader.load("/textures/map_texture.png", (data) => {
+textureLoader.load('/textures/map_texture.png', (data) => {
   const aspect = data.image.height / data.image.width;
   const aspectMultiplier = 1200.0;
 
@@ -173,7 +173,7 @@ textureLoader.load("/textures/map_texture.png", (data) => {
  */
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
-  antialias: true,
+  antialias: true
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -192,7 +192,7 @@ function onPointerMove(event) {
   pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
-window.addEventListener("pointermove", onPointerMove);
+window.addEventListener('pointermove', onPointerMove);
 
 let intersected;
 
@@ -249,7 +249,7 @@ global.cloudsAnimation = () => {
   }
 };
 
-gui.add(global, "cloudsAnimation").name("Clouds Animation");
+gui.add(global, 'cloudsAnimation').name('Clouds Animation');
 
 let video, videoTexture, animationPlane;
 
@@ -257,7 +257,7 @@ const animate = () => {
   mapPlane.visible = false;
 
   if (!videoTexture) {
-    video = document.getElementById("video");
+    video = document.getElementById('video');
 
     videoTexture = new THREE.VideoTexture(video);
     videoTexture.magFilter = THREE.LinearFilter;
@@ -267,7 +267,7 @@ const animate = () => {
     const { videoWidth, videoHeight } = video;
 
     animationPlane = new THREE.Sprite(
-      new THREE.SpriteMaterial({ color: "white", map: videoTexture })
+      new THREE.SpriteMaterial({ color: 'white', map: videoTexture })
     );
 
     animationPlane.scale.x = videoWidth / 800.0;
@@ -277,7 +277,7 @@ const animate = () => {
 
     scene.add(animationPlane);
 
-    video.addEventListener("timeupdate", () => {
+    video.addEventListener('timeupdate', () => {
       if (video.currentTime >= 5.1) {
         video.pause();
         animateUp(() => {
@@ -305,7 +305,7 @@ global.skullAnimation = () => {
   animate();
 };
 
-gui.add(global, "skullAnimation").name("Skull Animation");
+gui.add(global, 'skullAnimation').name('Skull Animation');
 
 /**
  * Animate

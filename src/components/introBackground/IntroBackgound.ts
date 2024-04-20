@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Experience from '../../experience';
+import Experience from '../../experience/Experience';
 import { ImageMetadata } from '../../experience/utils/Resources';
 
 export default class IntroBackground {

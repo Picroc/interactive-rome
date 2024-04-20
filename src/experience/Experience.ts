@@ -3,11 +3,10 @@ import Debug from './utils/Debug';
 import Sizes from './utils/Sizes';
 import Time from './utils/Time';
 import Resources from './utils/Resources';
-import Camera from './camera';
-import Renderer from './renderer';
-// import MapScene from '../scenes/map';
-import resources from '../resources';
-import { Clouds } from '../components/clouds';
+import Camera from './Camera';
+import Renderer from './Renderer';
+import resources from '../resources/Resources';
+import { Clouds } from '../components/clouds/Clouds';
 import IntroScene from '../scenes/intro';
 import MapScene from '../scenes/map';
 
