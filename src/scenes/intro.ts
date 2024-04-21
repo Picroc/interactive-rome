@@ -71,7 +71,7 @@ export default class IntroScene {
   animateUp(cb?: () => void) {
     const tween = new Tween(this.sceneGroup.position);
     tween.easing(Easing.Quadratic.In);
-    tween.to({ z: 3.0 }, 1000);
+    tween.to({ z: 3.0 }, 700);
     tween.onComplete(() => {
       cb?.();
     });
@@ -80,8 +80,8 @@ export default class IntroScene {
 
   animateDown(cb?: () => void) {
     const tween = new Tween(this.sceneGroup.position);
-    tween.easing(Easing.Quadratic.In);
-    tween.to({ z: 0.0 }, 1000);
+    tween.easing(Easing.Quadratic.Out);
+    tween.to({ z: 0.0 }, 700);
     tween.onComplete(() => {
       cb?.();
     });
