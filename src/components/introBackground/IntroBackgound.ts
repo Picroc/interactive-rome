@@ -8,6 +8,7 @@ export default class IntroBackground {
   scene: Experience['scene'];
   resources: Experience['resources'];
   debug: Experience['debug'];
+  parentGroup?: THREE.Group;
 
   geometry: THREE.PlaneGeometry;
   texture: ImageMetadata;
@@ -15,12 +16,13 @@ export default class IntroBackground {
 
   hiderPlane: THREE.Sprite;
 
-  constructor() {
+  constructor(parentNode?: THREE.Group) {
     const { scene, resources, debug } = Experience.getInstance();
 
     this.scene = scene;
     this.resources = resources;
     this.debug = debug;
+    this.parentGroup = parentNode;
 
     this.setGeometry();
     this.setTextures();
@@ -80,6 +82,11 @@ export default class IntroBackground {
     this.mesh.position.y = -2;
     this.mesh.rotation.x = -Math.PI / 2;
 
+    if (this.parentGroup) {
+      this.parentGroup.add(this.mesh);
+      return;
+    }
+
     this.scene.add(this.mesh);
   }
 
@@ -93,6 +100,11 @@ export default class IntroBackground {
     this.hiderPlane.position.z = 1.59368;
 
     this.hiderPlane.scale.x = 4.93;
+
+    if (this.parentGroup) {
+      this.parentGroup.add(this.hiderPlane);
+      return;
+    }
 
     this.scene.add(this.hiderPlane);
   }

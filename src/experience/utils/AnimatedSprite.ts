@@ -10,6 +10,7 @@ export interface TileOptions {
 export default class AnimatedSprite {
   scene: Experience['scene'];
   resources: Experience['resources'];
+  parentGroup?: THREE.Group;
 
   tilesNumber: number;
   tileWidth: number;
@@ -21,11 +22,13 @@ export default class AnimatedSprite {
 
   currentTile: number;
 
-  constructor() {
+  constructor(parentNode?: THREE.Group) {
     const { scene, resources } = Experience.getInstance();
 
     this.scene = scene;
     this.resources = resources;
+
+    this.parentGroup = parentNode;
   }
 
   setTileset(options: TileOptions) {
@@ -52,6 +55,12 @@ export default class AnimatedSprite {
 
     this.sprite.scale.x = Math.floor(this.tileset.scale.x / this.tilesNumber);
     this.sprite.scale.y = this.tileset.scale.y;
+
+    if (this.parentGroup) {
+      this.parentGroup.add(this.sprite);
+
+      return;
+    }
 
     this.scene.add(this.sprite);
   }

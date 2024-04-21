@@ -8,8 +8,8 @@ export default class Skull extends AnimatedSprite {
 
   debug: Experience['debug'];
 
-  constructor() {
-    super();
+  constructor(parentNode?: THREE.Group) {
+    super(parentNode);
 
     const { debug } = Experience.getInstance();
 

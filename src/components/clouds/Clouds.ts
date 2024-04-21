@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import Experience from '../../experience/Experience';
 import { randFloat, randInt } from 'three/src/math/MathUtils.js';
 
-const CLOUDS_COUNT = 120;
+const CLOUDS_COUNT = 100;
 const SCALING_FACTOR = 0.75;
 const MapBoundingBox = {
   min: { x: -1.9, z: -1.1 },

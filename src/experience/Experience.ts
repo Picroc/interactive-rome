@@ -10,6 +10,7 @@ import { Clouds } from '../components/clouds/Clouds';
 import IntroScene from '../scenes/intro';
 import MapScene from '../scenes/map';
 import UI from './UI';
+import OpacityFader from '../components/opacityFader/OpacityFader';
 
 export interface InteractiveScene {
   update: () => void;
@@ -34,6 +35,7 @@ export default class Experience {
 
   currentScene?: InteractiveScene;
   clouds?: Clouds;
+  opacityFader?: OpacityFader;
 
   scenes: {
     map: MapScene;
@@ -127,6 +129,8 @@ export default class Experience {
     this.clouds = new Clouds();
     this.clouds.spawnClouds();
 
+    this.opacityFader = new OpacityFader();
+
     this.setScene(this.scenes.intro);
   }
 
@@ -140,6 +144,7 @@ export default class Experience {
 
     this.currentScene?.update();
     this.clouds?.update();
+    this.opacityFader?.update();
 
     this.renderer.update();
   };

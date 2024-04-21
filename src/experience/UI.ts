@@ -7,8 +7,11 @@ export default class UI {
   }[] = [
     {
       action: (experience, onDone) => {
+        experience.scenes.intro.setForDown();
         experience.camera.animate('down', () => {
-          onDone();
+          experience.scenes.intro.animateDown(() => {
+            onDone();
+          });
         });
       }
     },
@@ -28,7 +31,7 @@ export default class UI {
     },
     {
       action: (experience, onDone) => {
-        experience.camera.animate('up', () => {
+        experience.scenes.intro.animateUp(() => {
           experience.transitionToScene(experience.scenes.map, onDone);
         });
       }

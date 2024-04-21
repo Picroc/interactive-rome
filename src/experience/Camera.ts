@@ -74,6 +74,8 @@ export default class Camera {
     if (this.debug.active) {
       const folder = this.debug.ui.addFolder('camera');
       folder.add(debugObject, 'animateCamera');
+      folder.add(this.instance.position, 'x').min(-3.0).max(3.0).step(0.0001);
+      folder.add(this.instance.position, 'z').min(-3.0).max(3.0).step(0.0001);
     }
   }
 
