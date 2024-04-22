@@ -1,4 +1,5 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import solidPlugin from 'vite-plugin-solid';
 
 export default {
   root: 'src/',
@@ -13,5 +14,5 @@ export default {
     emptyOutDir: true, // Empty the folder first
     sourcemap: true // Add sourcemap
   },
-  plugins: [vanillaExtractPlugin()]
+  plugins: [vanillaExtractPlugin(), solidPlugin()]
 };

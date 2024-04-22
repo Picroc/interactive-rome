@@ -9,8 +9,8 @@ import resources from '../resources/Resources';
 import { Clouds } from '../components/clouds/Clouds';
 import IntroScene from '../scenes/intro';
 import MapScene from '../scenes/map';
-import UI from './UI';
 import OpacityFader from '../components/opacityFader/OpacityFader';
+import { initializeSolidUI, setGlobalSignal } from '../solid-ui';
 
 export interface InteractiveScene {
   update: () => void;
@@ -30,8 +30,6 @@ export default class Experience {
   resources: Resources;
   camera: Camera;
   renderer: Renderer;
-
-  ui: UI;
 
   currentScene?: InteractiveScene;
   clouds?: Clouds;
@@ -88,7 +86,8 @@ export default class Experience {
       this.setWorld();
       this.setDebug();
 
-      this.ui = new UI();
+      initializeSolidUI();
+      setGlobalSignal('Somewhere in Italy');
     });
   }
 
@@ -114,6 +113,9 @@ export default class Experience {
   transitionToScene(scene: InteractiveScene, onDone?: () => void) {
     this.camera.animate('up', () => {
       this.setScene(scene);
+      if (scene === this.scenes.map) {
+        setGlobalSignal('MAP');
+      }
       this.camera.animate('down', onDone);
     });
   }
