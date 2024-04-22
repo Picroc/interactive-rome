@@ -19,7 +19,7 @@ export const App: Component<{ globalSignal: string }> = (props) => {
             style={{
               padding: '10px',
               background: 'white',
-              border: '5px solid #000',
+              border: '3px solid #000',
               'border-top': '0',
               'border-left': '0',
               display: 'flex',
